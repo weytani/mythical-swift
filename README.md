@@ -12,38 +12,38 @@ You work through compilation errors and failing tests one at a time, writing jus
 
 - Xcode (includes Swift 6.0+ and XCTest)
 - macOS 15+
-- A text editor and terminal
 
-**Important:** Make sure `xcode-select` points to Xcode, not the standalone Command Line Tools:
-
-```bash
-sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-```
-
-## How To Use
+## Getting Started
 
 ```bash
 git clone https://github.com/weytani/mythical-swift.git
-cd mythical-swift
-
-# Work on one creature at a time
-CREATURE=Unicorn swift test
 ```
 
-Each creature is its own Swift module. Use the `CREATURE` environment variable to select which creature to compile and test. This avoids compiling creatures you haven't started yet.
+Open the `mythical-swift` folder in Xcode (File > Open, or `open mythical-swift/Package.swift`).
 
 ### The Workflow
 
-1. Run `CREATURE=Unicorn swift test`
-2. You'll see a **compilation error** like `Cannot find 'Unicorn' in scope` — this is expected!
-3. Open the test file (`Tests/UnicornTests/UnicornTests.swift`) and read the first test
-4. Open the source file (`Sources/Unicorn/Unicorn.swift`) and create the type
-5. Run `CREATURE=Unicorn swift test` — the first test passes, the rest are skipped
-6. Back in the test file, delete the next `throw XCTSkip(...)` line
-7. Run tests again — watch it fail, write the code, make it pass
-8. Repeat until all tests pass, then move to the next creature
+1. Select **UnicornTests** from the scheme picker in the toolbar
+2. Press **Cmd+U** to run tests
+3. You'll see a **compilation error** like `Cannot find 'Unicorn' in scope` — this is expected!
+4. Open the test file (`Tests/UnicornTests/UnicornTests.swift`) and read the first test
+5. Open the source file (`Sources/Unicorn/Unicorn.swift`) and create the type
+6. Press **Cmd+U** again — the first test passes, the rest are skipped
+7. Back in the test file, delete the next `throw XCTSkip(...)` line
+8. Press **Cmd+U** — watch it fail, write the code, make it pass
+9. Repeat until all tests pass, then select the next creature's test scheme
 
 The compilation error IS the "red" phase of TDD. In a statically typed language like Swift, the compiler is your first test.
+
+### Command Line Alternative
+
+If you prefer the terminal, use the `CREATURE` environment variable to select which creature to compile and test:
+
+```bash
+CREATURE=Unicorn swift test
+```
+
+This avoids compiling creatures you haven't started yet.
 
 ## Creature Order
 
